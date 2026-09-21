@@ -1,4 +1,3 @@
-cat << 'EOF' > watchlist.json
 {
   "watchlist": [
     "AAPL", "MSFT", "NVDA", "AMZN", "GOOGL", "META", "TSLA",
@@ -8,4 +7,3 @@ cat << 'EOF' > watchlist.json
   "window_min_days": 7,
   "window_max_days": 15
 }
-EOF
