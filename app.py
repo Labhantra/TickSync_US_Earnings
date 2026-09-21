@@ -1,4 +1,3 @@
-cat << 'EOF' > app.py
 import streamlit as st
 import requests
 import json
@@ -84,4 +83,3 @@ if config_data:
         if commit_watchlist(config_data, file_sha):
             st.success("Settings saved successfully!")
             st.rerun()
-EOF
