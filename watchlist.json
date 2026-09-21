@@ -1,8 +1,26 @@
 {
   "watchlist": [
-    "AAPL", "MSFT", "NVDA", "AMZN", "GOOGL", "META", "TSLA",
-    "AMD", "NFLX", "CRM", "QCOM", "AVGO", "ADBE", "INTC",
-    "PYPL", "UBER", "ABNB", "COST", "WMT", "DIS"
+    "AAPL",
+    "MSFT",
+    "NVDA",
+    "AMZN",
+    "GOOGL",
+    "META",
+    "TSLA",
+    "AMD",
+    "NFLX",
+    "CRM",
+    "QCOM",
+    "AVGO",
+    "ADBE",
+    "INTC",
+    "PYPL",
+    "UBER",
+    "ABNB",
+    "COST",
+    "WMT",
+    "DIS",
+    "HDB"
   ],
   "window_min_days": 7,
   "window_max_days": 15
