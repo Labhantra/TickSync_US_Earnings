@@ -1,4 +1,3 @@
-cat << 'EOF' > us_earnings_monitor.py
 import os
 import sys
 import json
@@ -202,4 +201,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-EOF
