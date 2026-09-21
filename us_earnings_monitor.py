@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import base64  # <-- Add this
 import requests
 import pandas as pd
 import yfinance as yf
@@ -8,6 +9,8 @@ from datetime import datetime, timedelta
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
+GH_PAT = os.getenv("GH_PAT")                                # <-- Add this
+GITHUB_REPOSITORY = os.getenv("GITHUB_REPOSITORY")          # <-- Add this
 
 if not TELEGRAM_TOKEN or not CHAT_ID:
     print("[❌ ERROR] TELEGRAM_TOKEN or CHAT_ID is missing from environment variables.")
@@ -17,6 +20,19 @@ TELEGRAM_API = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
 CONFIG_FILE = "watchlist.json"
 
 def load_config():
+    # Prefer fetching the live version straight from GitHub
+    if GH_PAT and GITHUB_REPOSITORY:
+        try:
+            url = f"https://api.github.com/repos/{GITHUB_REPOSITORY}/contents/watchlist.json"
+            headers = {"Authorization": f"token {GH_PAT}", "Accept": "application/vnd.github.v3+json"}
+            res = requests.get(url, headers=headers, timeout=8)
+            if res.status_code == 200:
+                content = base64.b64decode(res.json()["content"]).decode("utf-8")
+                return json.loads(content)
+        except Exception as e:
+            print(f"[⚠️] Remote config fetch failed, falling back to local file: {e}")
+
+    # Fallback to local VM file if GitHub API fails
     try:
         with open(CONFIG_FILE, "r") as f:
             return json.load(f)
