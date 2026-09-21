@@ -93,7 +93,7 @@ def analyze_ticker(ticker, min_days, max_days):
     streak_up = 0
     streak_down = 0
 
-    for change in reversed(diffs.tail(8)):
+    for change in reversed(diffs.tail(8).tolist()):
         if change > 0:
             if streak_down > 0:
                 break
